@@ -6,7 +6,6 @@ import axios from "axios";
 // Use the environment variable
 const API_URL =
   import.meta.env.VITE_API_URL || "http://localhost:5000/api/todos";
-console.log("API_URL", import.meta.env.VITE_API_URL);
 
 // Async Thunks
 export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
