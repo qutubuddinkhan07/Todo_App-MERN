@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../features/todoSlice";
 
 export default function AddForm() {
   const [task, setTask] = useState("");
   const dispatch = useDispatch();
+  const addStatus = useSelector((state) => state.todos.addStatus);
 
   const submitHandler = async (evt) => {
     evt.preventDefault();
@@ -30,7 +31,15 @@ export default function AddForm() {
         onChange={(e) => setTask(e.target.value)}
         className="px-2 py-3 sm:py-2 rounded-md border boder-gray-300 w-full focus:ring-2 focus:ring-blue-400"
       />
-      <button type="submit" className="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition sm:w-auto w-full">
+      <button
+        type="submit"
+        className={`bg-blue-500 text-white py-2 rounded-md transition sm:w-auto w-full ${
+          addStatus === "loading"
+            ? "opacity-70 cursor-not-allowed"
+            : "hover:bg-blue-600"
+        }`}
+        disabled={addStatus === "loading"}
+      >
         Add Task
       </button>
     </form>
