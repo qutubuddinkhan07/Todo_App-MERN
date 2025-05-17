@@ -10,7 +10,6 @@ export default function Todo() {
   const deleteHandler = async (id) => {
     try {
       await dispatch(deleteTodo(id)).unwrap();
-      console.log("Deleted", id);
     } catch (error) {
       console.error("Failed to delete todo:", error);
     }
@@ -19,7 +18,6 @@ export default function Todo() {
   const toggleMark = async (id) => {
     try {
       await dispatch(toggleDone(id)).unwrap();
-      console.log("Toggled:", id);
     } catch (error) {
       console.error("Failed to toggle todo:", error);
     }

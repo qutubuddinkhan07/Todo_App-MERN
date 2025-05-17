@@ -20,7 +20,6 @@ router.post(
     const newTodo = new Todo({ task });
     const result = await newTodo.save();
 
-    console.log(result);
     res.status(201).json(newTodo);
   })
 );
@@ -30,7 +29,6 @@ router.delete(
   "/:id",
   wrapAsync(async (req, res) => {
     const deletedTodo = await Todo.findByIdAndDelete(req.params.id);
-    console.log("deleted todo", deletedTodo);
 
     res.send(204).end();
   })
